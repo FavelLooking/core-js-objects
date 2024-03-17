@@ -18,7 +18,7 @@
  *    shallowCopy({}) => {}
  */
 function shallowCopy(obj) {
-  return Object.assign({},obj)
+  return { ...obj };
 }
 
 /**
@@ -54,14 +54,16 @@ function removeProperties(obj, keys) {
     return obj;
   }
 
+  const newObj = { ...obj };
+
   for (let i = 0; i < keys.length; i += 1) {
     const key = keys[i];
-    if (obj.hasOwnProperty(key)) {
-      delete obj[key];
+    if (key in newObj) {
+      delete newObj[key];
     }
   }
 
-  return obj;
+  return newObj;
 }
 
 /**
